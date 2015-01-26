@@ -1,0 +1,14 @@
+{
+  "name": "claudio",
+  "version": "1.0.0",
+  "description": "Capacitacion",
+  "main": "theWallServer.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.11.1"
+  }
+}

@@ -1,0 +1,3 @@
+Crear un servidor en node.js con Express
+Crear un endpoint en node js para devolver un array de posts
+Crear una aplicacion web que devuelva el listado de posts con angularjs
