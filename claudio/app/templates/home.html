@@ -1,3 +1,4 @@
 <div ng-click="getPosts()">{{menu}}</div>
 <h2>LISTA DE POSTS</h2>
+        <input type="text" ng-model="posts[0].name">
 <div><ul><li ng-repeat="post in posts">{{post.name}}</li></ul></div>
