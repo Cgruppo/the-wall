@@ -1,31 +1,44 @@
-module.exports = function(model){
+module.exports = function(app,model){
 
     var Posts = (function(){
 
-        function get(callback){
-            model.findByIdAndUpdate("54cbe1c19c9959c004e8fbae",{title:"Hola 2 y medio"},function(err,doc){
+        function init(){
+            app.get('/posts',get);
+            app.post('/posts',add);
+        }
+
+        function get(req,res){
+            model.find({},function(err,doc){
                 if(err){
-                    console.log(err);
                     return;
                 }
-                callback(doc);
+
+                var results = [];
+                doc.forEach(function(item){
+                    item.date = new Date();
+                    results.push(item);
+                });
+
+                res.json({success:true,result:results});
             });
         }
 
-        function add(callback){
-
-            model.create({title:"hola 2",content:"MI post 2"},function(err,doc){
+        function add(req,res){
+            console.log(req.body);
+            model.create(req.body,function(err,doc){
                 if(err){
                     console.log(err);
                     return;
                 }
-                callback(doc);
+                res.render('./tpl/view.html',doc);
+                //res.json({success:true,result:doc});
             });
         }
 
         return {
             get:get,
-            add:add
+            add:add,
+            init:init
         }
 
     })();

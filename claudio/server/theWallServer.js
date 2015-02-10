@@ -1,14 +1,12 @@
-//var express = require('express');
-//var app = express();
-//app.use('/',express.static('../app'));
-//app.listen(80);
-//
-//app.get('/posts',function(req,res){
-//    var posts = [{name:"Primer Post"},{name:"Segundo Post"}];
-//    res.json(posts);
-//});
-
 var Server = (function(){
+
+    var express = require('express');
+    var bodyparser = require('body-parser');
+    var app = express();
+    app.use(bodyparser.urlencoded({limit: '50mb', extended: true, uploadDir:'./uploads'}));
+    app.use(bodyparser.json({limit: '50mb'}));
+    app.use('/',express.static('../app'));
+    app.listen(8080);
 
     var mongoose = require('mongoose');
     var models = {};
@@ -19,10 +17,8 @@ var Server = (function(){
     }
 
     function start(){
-        var postCtrl = require('./controller/post.js')(models.post);
-        postCtrl.get(function(res){
-            console.log(res);
-        });
+        var postCtrl = require('./controller/post.js')(app,models.post);
+        postCtrl.init();
     }
 
     function connect(){

@@ -8,7 +8,8 @@ module.exports = function(mongoose){
             author:{ type: String},
             email:{ type: String},
             comment:{type: String}
-        }]
+        }],
+        date:{type: Date}
     });
 
     return mongoose.model('posts',postsSchema, 'posts');

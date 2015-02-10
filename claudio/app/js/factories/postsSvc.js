@@ -5,14 +5,21 @@ services.factory('PostSvc',[
     function($http){
 
         function getPost(callback){
-            $http.get('http://localhost/posts').success(function(response){
-                callback(response);
+            $http.get('http://localhost:8080/posts').success(function(response){
+                callback(response.result);
             }).error(function(err){
                 console.log(err);
             });
         }
 
+        function addNew(post,callback){
+            $http.post('http://localhost:8080/posts',post).success(function(response){
+                callback(response.result);
+            });
+        }
+
         return {
-            getPost:getPost
+            getPost:getPost,
+            addNew:addNew
         }
     }]);

@@ -4,26 +4,23 @@ controllers.controller('HomeCtrl',[
     'PostSvc',
 
     function($scope, PostSvc){
-        var posts = [];
-        $scope.menu = 'Get Posts';
 
-        function getPosts(){
+        $scope.post = {};
+        $scope.post.menu = 'Get Posts';
+        $scope.post.posts = [];
+        $scope.post.add = {};
+        $scope.post.add.date = new Date();
 
-            if(posts.length > 0){
-                $scope.posts = posts;
-                return;
-            }
+        PostSvc.getPost(function(response){
+            console.log(response);
+            $scope.post.posts = response;
+        });
 
-            PostSvc.getPost(function(response){
-                posts = response;
-                console.log(response);
-                $scope.posts = response;
+        $scope.addNew = function(){
+            $scope.post.posts.push($scope.post.add);
+            PostSvc.addNew($scope.post.add,function(response){
+
             });
-        }
+        };
 
-        function clearPosts(){
-            posts = [];
-        }
-
-        $scope.getPosts = getPosts;
     }]);

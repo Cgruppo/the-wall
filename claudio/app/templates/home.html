@@ -1,4 +1,18 @@
-<div ng-click="getPosts()">{{menu}}</div>
+<div ng-click="getPosts()">{{post.menu}}</div>
 <h2>LISTA DE POSTS</h2>
-        <input type="text" ng-model="posts[0].name">
-<div><ul><li ng-repeat="post in posts">{{post.name}}</li></ul></div>
+<ng-include src="'./templates/post-form.html'"></ng-include>
+
+<div>
+    <ul>
+        <li>{{post.add.title}}</li>
+        <li>{{post.add.content}}</li>
+        <li>{{post.add.date | date:'dd/mm/yy' }}</li>
+    </ul>
+</div>
+<div>
+    <ul ng-repeat="p in post.posts | orderBy:'title'">
+        <li>{{p.title}}</li>
+        <li>{{p.content}}</li>
+        <li>{{p.date | date:'dd/mm/yy'}}</li>
+    </ul>
+</div>
