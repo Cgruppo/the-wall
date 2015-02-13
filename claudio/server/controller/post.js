@@ -1,18 +1,17 @@
-module.exports = function(app,model){
+module.exports = function(dep){
 
     var Posts = (function(){
 
         function init(){
-            app.get('/posts',get);
-            app.post('/posts',add);
+            dep.app.get('/posts',get);
+            dep.app.post('/posts',add);
         }
 
         function get(req,res){
-            model.find({},function(err,doc){
+            dep.models.post.find({},function(err,doc){
                 if(err){
                     return;
                 }
-
                 var results = [];
                 doc.forEach(function(item){
                     item.date = new Date();
@@ -24,14 +23,12 @@ module.exports = function(app,model){
         }
 
         function add(req,res){
-            console.log(req.body);
-            model.create(req.body,function(err,doc){
+            dep.models.post.create(req.body,function(err,doc){
                 if(err){
                     console.log(err);
                     return;
                 }
-                res.render('./tpl/view.html',doc);
-                //res.json({success:true,result:doc});
+                res.json({success:true,result:doc});
             });
         }
 

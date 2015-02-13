@@ -1,0 +1,11 @@
+<input type="text" ng-model="socket.message" value="{{socket.message}}">
+<button ng-click="socket.sendMessage()">A todos</button>
+<button ng-click="socket.ack()">Acknowledge</button>
+
+<div>
+    <ul>
+        <li ng-repeat="m in socket.messages">
+            {{m.message}}
+        </li>
+    </ul>
+</div>

@@ -5,11 +5,17 @@
     <title></title>
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+
+    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
 </head>
 <body>
 <div ng-view></div>
 <script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/config.js"></script>
 <script type="text/javascript" src="js/controllers/homeCtrl.js"></script>
+<script type="text/javascript" src="js/controllers/SocketCtrl.js"></script>
+
 <script type="text/javascript" src="js/factories/postsSvc.js"></script>
+<script type="text/javascript" src="js/factories/socketSvc.js"></script>
 </body>
 </html>
